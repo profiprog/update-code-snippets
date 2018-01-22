@@ -14,7 +14,7 @@
     "postversion": "git push --follow-tags"
   },
   "bin": {
-    "update-code-snippets": "node bin/cli.js"
+    "update-code-snippets": "bin/cli.js"
   },
   "repository": {
     "type": "git",
