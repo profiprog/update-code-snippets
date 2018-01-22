@@ -1,0 +1,41 @@
+{
+  "name": "update-code-snippets",
+  "version": "0.0.0",
+  "description": "tool updating code snippeds in README.md or other .md files",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "npm install && rm -fr bin",
+    "dev": "ts-node src/cli.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --target es5 --lib es2015 --moduleResolution node --outDir bin src/cli.ts",
+    "prepublishOnly": "[ -f ~/.npmrc.token.profiprog ] && cat ~/.npmrc.token.profiprog > ~/.npmrc; [ \"$(npm whoami)\" == \"profiprog\" ]",
+    "preversion": "git push && npm run publish",
+    "version": "npm run build && npm publish",
+    "postversion": "git push --follow-tags"
+  },
+  "bin": {
+    "update-code-snippets": "bin/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/profiprog/update-code-snippets.git"
+  },
+  "keywords": [
+    "bin",
+    "typescript",
+    "markdown"
+  ],
+  "author": "Milan Skuhra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/profiprog/update-code-snippets/issues"
+  },
+  "homepage": "https://github.com/profiprog/update-code-snippets#readme",
+  "devDependencies": {
+    "@types/node": "^9.3.0",
+    "ts-node": "^4.1.0"
+  },
+  "dependencies": {
+    "typescript": "^2.6.2"
+  }
+}
