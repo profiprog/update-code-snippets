@@ -1,6 +1,6 @@
 {
   "name": "update-code-snippets",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "tool updating code snippeds in README.md or other .md files",
   "main": "index.js",
   "scripts": {
