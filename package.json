@@ -7,14 +7,14 @@
     "prebuild": "npm install && rm -fr bin",
     "dev": "ts-node src/cli.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --target es5 --lib es2015 --moduleResolution node --outDir bin src/cli.ts",
+    "build": "tsc --target es5 --lib es2015 --moduleResolution node --outDir bin src/cli.ts && chmod +x bin/cli.js",
     "prepublishOnly": "[ -f ~/.npmrc.token.profiprog ] && cat ~/.npmrc.token.profiprog > ~/.npmrc; [ \"$(npm whoami)\" == \"profiprog\" ]",
     "preversion": "git push && npm run publish",
-    "version": "npm run build && npm publish",
+    "version": "npm run build && npm publish --access=public",
     "postversion": "git push --follow-tags"
   },
   "bin": {
-    "update-code-snippets": "bin/cli.js"
+    "update-code-snippets": "node bin/cli.js"
   },
   "repository": {
     "type": "git",

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import {lstatSync, readdirSync, readFileSync, writeFileSync} from "fs";
 import {join} from "path";
 import * as ts from "typescript";
