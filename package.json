@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --target es5 --lib es2015 --moduleResolution node --outDir bin src/cli.ts && chmod +x bin/cli.js",
     "prepublishOnly": "[ -f ~/.npmrc.token.profiprog ] && cat ~/.npmrc.token.profiprog > ~/.npmrc; [ \"$(npm whoami)\" == \"profiprog\" ]",
-    "preversion": "git push && npm run publish",
+    "preversion": "git push",
     "version": "npm run build && npm publish --access=public",
     "postversion": "git push --follow-tags"
   },
