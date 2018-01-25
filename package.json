@@ -11,7 +11,8 @@
     "prepublishOnly": "[ -f ~/.npmrc.token.profiprog ] && cat ~/.npmrc.token.profiprog > ~/.npmrc; [ \"$(npm whoami)\" == \"profiprog\" ]",
     "preversion": "git push",
     "version": "npm run build && npm publish --access=public",
-    "postversion": "git push --follow-tags"
+    "postversion": "git push --follow-tags",
+    "precommit": "npm run dev"
   },
   "bin": {
     "update-code-snippets": "bin/cli.js"
@@ -33,6 +34,7 @@
   "homepage": "https://github.com/profiprog/update-code-snippets#readme",
   "devDependencies": {
     "@types/node": "^9.3.0",
+    "husky": "^0.14.3",
     "ts-node": "^4.1.0"
   },
   "dependencies": {
