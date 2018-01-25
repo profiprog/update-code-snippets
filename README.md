@@ -25,7 +25,7 @@ In `package.json` set up:
 
 <!-- testing include:
 ```typescript
-function resolveKind(kind) {
+function resolveKind(kind) {  //test
 	for (let x in ts.SyntaxKind) if (ts.SyntaxKind[x] === kind) return x;
 	return "(unknown)";
 }

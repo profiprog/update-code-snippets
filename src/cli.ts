@@ -75,14 +75,20 @@ const updateCode = (tsCode, sources) => {
 };
 
 const TYPESCRIPT = "typescript\n";
-const updateContent = (mdFile, sources) => {
-	let content = readFileSync(mdFile).toString().split("```");
+const updateContent = (mdFile, sources): number => {
+	let oldSrc = readFileSync(mdFile).toString();
+	let content = oldSrc.split("```");
 	for (let i = 1; i < content.length; i += 2) {
 		if (content[i].startsWith(TYPESCRIPT)) {
 			content[i] = "typescript\n" + updateCode(content[i].substr(TYPESCRIPT.length), sources);
 		}
 	}
-	writeFileSync(mdFile, content.join("```"));
+	let newSrc = content.join("```");
+	if (oldSrc !== newSrc) {
+		writeFileSync(mdFile, newSrc);
+		return 1;
+	}
+	return 0;
 };
 
 const docFiles = process.argv.slice(2);
@@ -93,9 +99,15 @@ if (!docFiles.length) {
 
 if (docFiles.length) {
 	let sources = listFiles("src", /.+\.ts$/).map(parseAST);
+	let modifiedFilesCount = 0;
 	docFiles.forEach(file => {
 		if (!lstatSync(file).isFile()) new Error("File " + file + " not found!");
-		if (file.match(".md")) updateContent(file, sources);
+		if (file.match(".md")) modifiedFilesCount += updateContent(file, sources);
 		else new Error("Other files than .md are not supported yet!");
 	});
+	if (modifiedFilesCount) {
+		console.log("Commit canceled because some code snippets was actualized.");
+		console.log("Re-run commit");
+		process.exit(9);
+	}
 }
