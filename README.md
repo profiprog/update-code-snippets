@@ -1,4 +1,4 @@
-Simple tool for updating code snippets in RREADME.md or in other .md files directly from project codes.
+Simple tool for updating code snippets in README.md or in other .md files directly from project codes.
 
 Currently supports just `typescript`. Other languages will be added as needed.
 
